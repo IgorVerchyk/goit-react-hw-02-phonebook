@@ -20,9 +20,16 @@ class App extends Component {
     };
 
     AddContact = propContact => {
-        this.setState(state => ({
-            contacts: [...state.contacts, propContact],
-        }));
+        const item = propContact.name;
+        const items = this.state.contacts.map(contact =>
+            contact.name.toLowerCase(),
+        );
+
+        items.includes(item.toLowerCase().trim())
+            ? alert(`${item} is already in contacts`)
+            : this.setState(state => ({
+                  contacts: [...state.contacts, propContact],
+              }));
     };
 
     changeFilter = filter => {
