@@ -19,3 +19,12 @@
     margin-top: 20px;
     width: 300px;
 }
+.listItem {
+    display: flex;
+}
+.deleteButton {
+    margin: auto 20px;
+    width: 50px;
+    height: 25px;
+    border-radius: 4px;
+}
