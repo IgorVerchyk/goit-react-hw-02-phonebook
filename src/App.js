@@ -2,30 +2,20 @@ import React, { Component } from 'react';
 import Section from './components/Section';
 import ContactList from './components/elements/ContactsList';
 import ContactForm from './components/elements/ContactForm';
-import { v4 as uuidv4 } from 'uuid';
+
 import styles from './components/elements/Contacts.module.css';
 
 class App extends Component {
     state = {
         contacts: [],
-        name: '',
     };
 
-    AddContact = name => {
-        const contact = {
-            id: uuidv4(),
-            name: name,
-        };
-
+    AddContact = propContact => {
         this.setState(state => ({
-            contacts: [...state.contacts, contact],
+            contacts: [...state.contacts, propContact],
         }));
-        this.reset();
     };
 
-    reset = () => {
-        this.setState({ name: '' });
-    };
     render() {
         return (
             <>

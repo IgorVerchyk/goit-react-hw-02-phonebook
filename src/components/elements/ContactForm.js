@@ -1,25 +1,35 @@
 import React, { Component } from 'react';
 import styles from './Contacts.module.css';
+import { v4 as uuidv4 } from 'uuid';
+import PropTypes from 'prop-types';
 
 class CreateContact extends Component {
-    state = { name: '' };
+    state = { name: '', number: '' };
 
-    changeHandler = e => {
-        this.setState({ name: e.target.value });
+    changeHandler = event => {
+        const { name, value } = event.currentTarget;
+
+        this.setState({ [name]: value });
     };
 
     submitHandler = e => {
         e.preventDefault();
-        this.props.onAddContact(this.state.name);
+        const { name, number } = this.state;
+        const contact = {
+            id: uuidv4(),
+            name: name,
+            number: number,
+        };
+        this.props.onAddContact(contact);
         this.reset();
     };
 
     reset = () => {
-        this.setState({ name: '' });
+        this.setState({ name: '', number: '' });
     };
 
     render() {
-        const { name } = this.state;
+        const { name, number } = this.state;
         return (
             <form onSubmit={this.submitHandler} className={styles.contactForm}>
                 <label className={styles.container}>
@@ -32,10 +42,19 @@ class CreateContact extends Component {
                         onChange={this.changeHandler}
                         className={styles.inputs}
                     />
+                    <span>Number</span>
+                    <input
+                        type="number"
+                        name="number"
+                        value={number}
+                        placeholder="Please, enter the number..."
+                        onChange={this.changeHandler}
+                        className={styles.inputs}
+                    />
                 </label>
                 <button
                     type="submit"
-                    disabled={!name.length}
+                    disabled={!name.length || !number.length}
                     className={styles.contactAddButton}
                 >
                     Add contact
@@ -44,5 +63,11 @@ class CreateContact extends Component {
         );
     }
 }
+
+CreateContact.propTypes = {
+    name: PropTypes.string,
+    number: PropTypes.number,
+    onAddContact: PropTypes.func.isRequired,
+};
 
 export default CreateContact;

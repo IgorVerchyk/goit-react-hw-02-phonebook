@@ -1,9 +1,17 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-export default function insertItem({ name }) {
+export default function insertItem({ name, number }) {
     return (
         <li>
-            <p>{name}</p>
+            <p>
+                {name}:{number}
+            </p>
         </li>
     );
 }
+
+insertItem.propTypes = {
+    name: PropTypes.string.isRequired,
+    number: PropTypes.string.isRequired,
+};
