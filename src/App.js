@@ -7,9 +7,6 @@ import styles from './components/elements/Contacts.module.css';
 
 class App extends Component {
     state = {
-        contacts: [],
-    };
-    state = {
         contacts: [
             { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
             { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
@@ -48,6 +45,22 @@ class App extends Component {
         const newContactsArr = contacts.filter(contact => contact.id !== id);
         this.setState({ contacts: newContactsArr });
     };
+
+    componentDidMount() {
+        const savedContacts = localStorage.getItem('contacts');
+        if (savedContacts) {
+            this.setState({ contacts: JSON.parse(savedContacts) });
+        }
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (prevState.contacts !== this.state.contacts) {
+            localStorage.setItem(
+                'contacts',
+                JSON.stringify(this.state.contacts),
+            );
+        }
+    }
 
     render() {
         return (
