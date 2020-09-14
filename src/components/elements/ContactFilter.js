@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './Contacts.module.css';
+import PropTypes from 'prop-types';
 
 export default function Filter({ onChange }) {
     return (
@@ -14,3 +15,7 @@ export default function Filter({ onChange }) {
         </label>
     );
 }
+
+Filter.propTupes = {
+    onChange: PropTypes.func.isRequired,
+};

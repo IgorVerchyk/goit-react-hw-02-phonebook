@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Contacts.module.css';
 
-export default function insertItem({ name, number, onDelete }) {
+export default function insertContactItem({ name, number, onDelete }) {
     return (
         <li className={styles.listItem}>
             <p>
@@ -19,7 +19,8 @@ export default function insertItem({ name, number, onDelete }) {
     );
 }
 
-insertItem.propTypes = {
+insertContactItem.propTypes = {
     name: PropTypes.string.isRequired,
     number: PropTypes.string.isRequired,
+    onDelete: PropTypes.func.isRequired,
 };

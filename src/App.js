@@ -16,7 +16,7 @@ class App extends Component {
         filter: '',
     };
 
-    AddContact = propContact => {
+    addContact = propContact => {
         const item = propContact.name;
         const items = this.state.contacts.map(contact =>
             contact.name.toLowerCase(),
@@ -66,7 +66,7 @@ class App extends Component {
         return (
             <>
                 <Section title={'Phonebook'} className={styles.container}>
-                    <ContactForm onAddContact={this.AddContact} />
+                    <ContactForm onAddContact={this.addContact} />
                 </Section>
                 <Section title={'Contacts'} className={styles.container}>
                     <Filter onChange={this.changeFilter} />
