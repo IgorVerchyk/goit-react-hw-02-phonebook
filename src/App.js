@@ -21,12 +21,13 @@ class App extends Component {
         const items = this.state.contacts.map(contact =>
             contact.name.toLowerCase(),
         );
-
-        items.includes(item.toLowerCase().trim())
-            ? alert(`${item} is already in contacts`)
-            : this.setState(state => ({
-                  contacts: [...state.contacts, propContact],
-              }));
+        if (items.includes(item.toLowerCase().trim())) {
+            alert(`${item} is already in contacts`);
+        } else {
+            this.setState(state => ({
+                contacts: [...state.contacts, propContact],
+            }));
+        }
     };
 
     changeFilter = filter => {
