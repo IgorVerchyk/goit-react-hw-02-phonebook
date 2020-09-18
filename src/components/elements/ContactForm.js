@@ -3,7 +3,7 @@ import styles from './Contacts.module.css';
 import { v4 as uuidv4 } from 'uuid';
 import PropTypes from 'prop-types';
 
-class CreateContact extends Component {
+class ContactForm extends Component {
     state = { name: '', number: '' };
 
     changeHandler = event => {
@@ -64,10 +64,10 @@ class CreateContact extends Component {
     }
 }
 
-CreateContact.propTypes = {
+ContactForm.propTypes = {
     name: PropTypes.string,
     number: PropTypes.number,
     onAddContact: PropTypes.func.isRequired,
 };
 
-export default CreateContact;
+export default ContactForm;

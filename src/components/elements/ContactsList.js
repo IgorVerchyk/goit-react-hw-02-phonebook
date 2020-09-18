@@ -1,12 +1,12 @@
 import React from 'react';
-import InsertContactItem from './ContactItem';
+import ContactItem from './ContactItem';
 import PropTypes from 'prop-types';
 
-export default function Contactlist({ contacts, onDelete }) {
+export default function ContactList({ contacts, onDelete }) {
     return (
         <ul>
             {contacts.map(({ id, ...contact }) => (
-                <InsertContactItem
+                <ContactItem
                     key={id}
                     {...contact}
                     onDelete={() => onDelete(id)}
@@ -16,7 +16,7 @@ export default function Contactlist({ contacts, onDelete }) {
     );
 }
 
-Contactlist.propTypes = {
+ContactList.propTypes = {
     contacts: PropTypes.oneOfType([
         PropTypes.arrayOf(
             PropTypes.exact({
